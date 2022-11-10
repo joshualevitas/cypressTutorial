@@ -3,6 +3,9 @@ import { getDatabase, onValue, ref, update} from 'firebase/database';
 import { useCallback, useEffect, useState } from 'react';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
+import { connectAuthEmulator } from "firebase/auth";
+import { connectDatabaseEmulator } from "firebase/database";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBIio9qQIqm-3iGa8ZIVRbc2GyNIat9kZE",
   authDomain: "cypress-tutorial.firebaseapp.com",
@@ -16,6 +19,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
+
+// if (process.env.REACT_APP_EMULATE) {
+//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
+//   connectDatabaseEmulator(db, "127.0.0.1", 9000);
+
+//   signInWithCredential(auth, GoogleAuthProvider.credential(
+//     '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+//   ));
+// }
 
 export const useDbData = (path) => {
   const [data, setData] = useState();
