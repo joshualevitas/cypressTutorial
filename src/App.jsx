@@ -19,7 +19,6 @@ const CourseFormForUrl = ({courses}) => {
 };
 
 const Main = () => {
-  // console.log("hey");
   const [data, error] = useDbData(`/data`);
   const [profile, profileLoading, profileError] = useProfile();
  
